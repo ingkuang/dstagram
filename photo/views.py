@@ -2,7 +2,10 @@ from django.shortcuts import render
 from .models import Photo
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+@login_required
 class PhotoUploadView(CreateView):
     model = Photo
     fields = ['photo', 'text']
@@ -29,5 +32,6 @@ class PhotoUpdateView(UpdateView):
     model = Photo
     fields = ['photo', 'text']
     template_name = 'photo/update.html'
+
 
 # Create your views here.
